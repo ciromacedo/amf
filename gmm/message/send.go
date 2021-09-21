@@ -359,7 +359,7 @@ func SendRegistrationAccept(
 		logger.GmmLog.Error("SendRegistrationAccept: RanUe is nil")
 		return
 	}
-	amfUe.GmmLog.Info("Send Registration Accept")
+	amfUe.GmmLog.Info("Send Registration Accept - Ciro Macedo")
 
 	nasMsg, err := BuildRegistrationAccept(amfUe, anType, pDUSessionStatus, reactivationResult, errPduSessionId, errCause)
 	if err != nil {
