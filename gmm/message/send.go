@@ -5,6 +5,7 @@ import (
 	gmm_common "github.com/free5gc/amf/gmm/common"
 	"github.com/free5gc/amf/logger"
 	ngap_message "github.com/free5gc/amf/ngap/message"
+	"github.com/free5gc/amf/nwdaf"
 	"github.com/free5gc/amf/producer/callback"
 	"github.com/free5gc/nas/nasMessage"
 	"github.com/free5gc/nas/nasType"
@@ -360,6 +361,8 @@ func SendRegistrationAccept(
 		return
 	}
 	amfUe.GmmLog.Info("Send Registration Accept - Ciro Macedo")
+
+	nwdaf.NWDAFConnection()
 
 	nasMsg, err := BuildRegistrationAccept(amfUe, anType, pDUSessionStatus, reactivationResult, errPduSessionId, errCause)
 	if err != nil {

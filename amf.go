@@ -21,6 +21,8 @@ func init() {
 }
 
 func main() {
+
+
 	app := cli.NewApp()
 	app.Name = "amf"
 	appLog.Infoln(app.Name)
