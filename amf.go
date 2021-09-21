@@ -20,7 +20,6 @@ func init() {
 	appLog = logger.AppLog
 }
 
-//isso é um teste
 func main() {
 	app := cli.NewApp()
 	app.Name = "amf"
