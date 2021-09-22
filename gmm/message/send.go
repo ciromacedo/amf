@@ -362,7 +362,8 @@ func SendRegistrationAccept(
 	}
 	amfUe.GmmLog.Info("Send Registration Accept - Ciro Macedo")
 
-	nwdaf.NWDAFConnection()
+	/* nwdaf registration accept data collection */
+	nwdaf.RegistrationAccept(amfUe)
 
 	nasMsg, err := BuildRegistrationAccept(amfUe, anType, pDUSessionStatus, reactivationResult, errPduSessionId, errCause)
 	if err != nil {
