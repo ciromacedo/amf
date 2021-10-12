@@ -3,7 +3,6 @@ module github.com/free5gc/amf
 go 1.14
 
 require (
-	github.com/ciromacedo/nwdaf-api v0.0.0-20210922152622-d14b092fa398
 	git.cs.nctu.edu.tw/calee/sctp v1.1.0
 	github.com/antihax/optional v1.0.0
 	github.com/antonfisher/nested-logrus-formatter v1.3.0
