@@ -3,6 +3,8 @@ package nwdaf
 import (
 	"bytes"
 	"crypto/tls"
+	"encoding/json"
+	"fmt"
 	"github.com/free5gc/amf/context"
 	"golang.org/x/net/http2"
 	"log"
@@ -15,7 +17,21 @@ const NwdafUrl = "http://127.0.0.1:29599";
 const RegistrationAcceptApi = "/datacollection/amf-contexts/registration-accept";
 
 
-func RegistrationAccept(amfUe *context.AmfUe){
+func RegistrationAccept(amfUe *context.AmfUe, amfSelf *context.AMFContext) {
+
+	m := map[string]interface{}{}
+	amfSelf.EventSubscriptions.Range(func(key, value interface{}) bool {
+		m[fmt.Sprint(key)] = value
+		return true
+	})
+
+	b, err := json.MarshalIndent(m, "", " ")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(b))
+
+
 	url := getUrlConnection(RegistrationAcceptApi)
 
 	jsonData := `
