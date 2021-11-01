@@ -360,10 +360,10 @@ func SendRegistrationAccept(
 		logger.GmmLog.Error("SendRegistrationAccept: RanUe is nil")
 		return
 	}
-	amfUe.GmmLog.Info("Send Registration Accept - Ciro Macedo")
+	amfUe.GmmLog.Info("Send Registration Accept")
 
 	/* nwdaf registration accept data collection */
-	nwdaf.RegistrationAccept(amfUe)
+	nwdaf.RegistrationAccept(amfUe, context.AMF_Self())
 
 	nasMsg, err := BuildRegistrationAccept(amfUe, anType, pDUSessionStatus, reactivationResult, errPduSessionId, errCause)
 	if err != nil {
