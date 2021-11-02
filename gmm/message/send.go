@@ -5,7 +5,7 @@ import (
 	gmm_common "github.com/free5gc/amf/gmm/common"
 	"github.com/free5gc/amf/logger"
 	ngap_message "github.com/free5gc/amf/ngap/message"
-	"github.com/free5gc/amf/producer"
+	"github.com/free5gc/amf/nwdaf"
 	"github.com/free5gc/amf/producer/callback"
 	"github.com/free5gc/nas/nasMessage"
 	"github.com/free5gc/nas/nasType"
@@ -363,7 +363,7 @@ func SendRegistrationAccept(
 	amfUe.GmmLog.Info("Send Registration Accept")
 
 	/* nwdaf registration accept data collection */
-	producer.RegistrationAccept(amfUe, context.AMF_Self())
+	nwdaf.RegistrationAccept(amfUe, context.AMF_Self())
 
 	nasMsg, err := BuildRegistrationAccept(amfUe, anType, pDUSessionStatus, reactivationResult, errPduSessionId, errCause)
 	if err != nil {
