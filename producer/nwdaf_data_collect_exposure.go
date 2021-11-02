@@ -1,23 +1,16 @@
-package nwdaf
+package producer
 
 import (
 	"bytes"
-	"crypto/tls"
 	"github.com/free5gc/amf/context"
-	"golang.org/x/net/http2"
+	"github.com/free5gc/amf/nwdaf"
 	"log"
-	"net"
 	"net/http"
 )
 
-
-//const NwdafUrl = "http://127.0.0.1:29599";
-//const RegistrationAcceptApi = "/datacollection/amf-contexts/registration-accept";
-
-
 func RegistrationAccept(amfUe *context.AmfUe, amfSelf *context.AMFContext) {
 
-
+	/* verifica se existe registro de instância NWDAF */
 	nwdafSubscriber, _ := amfSelf.FindEventSubscription("NWDAF")
 	if nwdafSubscriber != nil {
 		url := nwdafSubscriber.EventSubscription.EventNotifyUri
@@ -37,7 +30,7 @@ func RegistrationAccept(amfUe *context.AmfUe, amfSelf *context.AMFContext) {
 		req.Header.Set("X-Custom-Header", "myvalue")
 		req.Header.Set("Content-Type", "application/json")
 
-		client := GetConnection()
+		client := nwdaf.GetConnection()
 
 		resp, err := client.Do(req)
 		if err != nil {
@@ -46,21 +39,4 @@ func RegistrationAccept(amfUe *context.AmfUe, amfSelf *context.AMFContext) {
 
 		defer resp.Body.Close()
 	}
-}
-
-/*func getUrlConnection(str string)(string){
-	return NwdafUrl +str;
-}*/
-
-
-func GetConnection()(http.Client){
-	client := http.Client{
-		Transport: &http2.Transport{
-			AllowHTTP: true,
-			DialTLS: func(network, addr string, cfg *tls.Config) (net.Conn, error) {
-				return net.Dial(network, addr)
-			},
-		},
-	}
-	return client
 }
