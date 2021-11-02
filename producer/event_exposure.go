@@ -51,6 +51,12 @@ func CreateAMFEventSubscriptionProcedure(createEventSubscription models.AmfCreat
 	}
 	newSubscriptionID := strconv.Itoa(int(id))
 
+	/* ajuste para manter registro único da NWDAF na lista de eventos */
+	if(createEventSubscription.Subscription.NfId == "NWDAF"){
+		newSubscriptionID = "NWDAF"
+	}
+
+
 	// store subscription in context
 	ueEventSubscription := context.AmfUeEventSubscription{}
 	ueEventSubscription.EventSubscription = &contextEventSubscription.EventSubscription
